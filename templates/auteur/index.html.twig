@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Les auteurs
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Nos Auteurs :
+        
+    </h1>
+    <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis deleniti est eum quibusdam explicabo maxime cum temporibus ut, ex eius quaerat quisquam. Quod libero ducimus vitae aperiam neque. Aliquid saepe hic dolorum at aperiam cumque facere est nisi nulla velit! Est fugit qui soluta rem tenetur, unde delectus aperiam? Nemo nisi mollitia itaque quidem, accusantium, sequi hic facilis repellendus vel unde, deleniti nulla aspernatur officiis aperiam possimus aliquam voluptatem adipisci ducimus dolorem. Exercitationem ipsa dolorem, commodi aperiam quia velit non nemo blanditiis, laborum consectetur enim ducimus, ipsam repudiandae provident dignissimos corporis! Atque esse perspiciatis provident nesciunt necessitatibus. Soluta, repellendus modi!
+        
+    </p>
+    <hr>
+        {% for auteur in auteurs %}
+            <div class="row mb-3 align-items-center">
+                <div class="col-12 col-md-3">
+                    {% if auteur.imageName is defined and auteur.imageName is not null %}
+                        <img
+                        src="{{ asset("images/auteurs/" ~ auteur.imageName) }}" alt="" class="img-fluid">
+                            {% else %}
+                            <img src="{{ asset("images/auteurs/avatar.png") }}" alt="" class="img-fluid">
+                            {% endif %}
+                        </div>
+                        <div class="col-12 col-md-9">
+                            {% if auteur.pseudo is defined and auteur.pseudo is not null %}
+                                <h2>
+                                    {{ auteur.pseudo }}
+                                </h2>
+                            {% else %}
+                                <h2>
+                                    {{ auteur.nom }}
+                                    {{ auteur.prenom }}
+                                </h2>
+                            {% endif %}
+                            <a href="{{ path('auteur-detail', { 'id': auteur.id }) }}" class="btn btn-dark mt-3">
+                                Voir la fiche
+                                                    
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <hr>
+                <div class="navigation">
+                    {{ knp_pagination_render(auteurs) }}
+                </div>
+            {% endblock %}
+            

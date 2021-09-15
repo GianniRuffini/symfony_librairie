@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12 col-md-3">
+        <img src="{{ asset('images/livres/' ~ livre.imageName) }}" alt="{{ livre.titre }}" class="img-fluid">
+    </div>
+    <div class="col-12 col-md-9">
+        <h1>{{ livre.titre }}</h1>
+        {# le twig filter |raw demande à symfony d'interpréter les balise html contenue dans la données (bdd) devant être afficher #}
+        <div>{{ livre.description|raw }}</div>
+        <p>
+            {% if livre.auteur.pseudo is defined and livre.auteur.pseudo is not null %}
+            {{ livre.auteur.pseudo }}
+            {% else %}
+            {{ livre.auteur.nom }} {{ livre.auteur.prenom }}
+            {# {{ livre.auteur.nom ~ ' ' ~ livre.auteur.prenom }} #}
+            {% endif %}
+        </p>
+        <a href="{{ path('livre', { slug: livre.id } ) }}" class="btn btn-dark my-2">
+            RETOUR
+        </a>
+    </div>
+</div>
+{% endblock %}

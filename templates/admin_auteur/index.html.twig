@@ -1,0 +1,66 @@
+{% extends 'base-admin.html.twig' %}
+
+
+{% block title %}
+    Auteur index
+        
+    
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Auteur index
+                    
+            
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Photo</th>
+                <th>Pseudo</th>
+                <th>Nom </th>
+                <th>Prenom</th>
+                <th>biographie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auteur in auteurs %}
+                <tr>
+                    <td>{{ auteur.id }}</td>
+                    <td>
+                        {% if auteur.imageName is defined and auteur.imageName is not null %}
+                        <img src="{{ asset('images/auteurs/' ~ auteur.imageName ) }}" alt="" class="img-list-admin">
+                        {% else %}
+                        <img src="{{ asset('images/auteurs/avatar.png') }}" alt="" class="img-list-admin">
+                        {% endif %}
+                    </td>
+                    <td>{{ auteur.pseudo }}</td>
+                    <td>{{ auteur.nom }}</td>
+                    <td>{{ auteur.prenom }}</td>
+                    <td>{{ auteur.biographie }}</td>
+                    <td>
+                        <a href="{{ path('admin_auteur_show', {'id': auteur.id}) }}" class="btn btn-secondary my-2">
+                            show
+                        </a>
+
+                        <a href="{{ path('admin_auteur_edit', {'id': auteur.id}) }}" class="btn btn-info my-2">
+                            edit
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_auteur_new') }}" class="btn btn-dark my-2">
+        Create new
+    </a>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+@import "_variables";
+
+body{
+    .img-list-admin{
+        max-width: 150px;
+    }
+
+    .absolute{
+        position: absolute;
+    }
+    .img-livre{
+        position: relative;
+        display: block;
+        .absolute{
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    
+}
+
+

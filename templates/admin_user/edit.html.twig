@@ -1,0 +1,13 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Modification {{ title }}{% endblock %}
+
+{% block body %}
+<a href="{{ path('admin_user_index', { "role": role }) }}" class="btn btn-secondary">back to list</a>
+    <h1>Modification {{ title }}</h1>
+
+    {{ include('admin_user/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('admin_user/_delete_form.html.twig') }}
+{% endblock %}
